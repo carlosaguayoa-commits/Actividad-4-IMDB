@@ -1,15 +1,13 @@
-# Actividad-4-IMDB
-Tarea Actividad 4 
-
 # Benchmark de Modelos Preentrenados de Hugging Face para Análisis de Sentimiento
 
-Este repositorio contiene la implementación, evaluación y análisis comparativo de modelos Transformer preentrenados de la plataforma **Hugging Face** para la tarea de clasificación binaria de sentimientos (Positivo / Negativo) en reseñas de cine utilizando el dataset de benchmark `IMDb`.
+[![Open In Colab](https.colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/carlosaguayoa-commits/Actividad-4-IMDB/blob/main/Evaluaci%C3%B3n_de_Modelos_Preentrenados_de_Hugging_Face.ipynb)
+
+Este repositorio contiene la implementación, evaluación y análisis comparativo de tres modelos Transformer preentrenados de la plataforma **Hugging Face** para la clasificación binaria de sentimientos (Positivo / Negativo) en reseñas de cine utilizando el dataset `IMDb`.
 
 ---
 
 ## 📋 Tabla de Contenidos
 - [Entorno de Ejecución](#-entorno-de-ejecución)
-- [Estructura del Proyecto](#-estructura-del-proyecto)
 - [Pasos de Ejecución](#-pasos-de-ejecución)
 - [Resultados Comparativos](#-resultados-comparativos)
 - [Conclusiones y Recomendaciones](#-conclusiones-y-recomendaciones)
@@ -17,59 +15,38 @@ Este repositorio contiene la implementación, evaluación y análisis comparativ
 ---
 
 ## ⚙️ Entorno de Ejecución
-## 🚀 Pasos de Ejecución (Google Colab)
 
-Para ejecutar y reproducir los resultados de este proyecto no necesitas instalar nada localmente. Todo el proceso se realiza en la nube a través de Google Colab con aceleración GPU:
-
-1. **Abrir el Notebook:**
-   Entre a: https://colab.research.google.com/drive/1aME9hAoU2fhHT3obQIpf0jYKwx_cWTob?authuser=1#scrollTo=DVWM_UJ2ympR
-
-2. **Activar la GPU T4:**
-   Dentro de Colab, ve al menú superior:
-   > **Entorno de ejecución** > **Cambiar tipo de entorno de ejecución** > Selecciona **GPU T4** > Guardar.
-
-3. **Ejecutar el Cuaderno:**
-   Ve a **Entorno de ejecución** > **Ejecutar todas** (o presiona `Ctrl + F9`). Las celdas instalarán automáticamente las dependencias, cargarán el dataset y evaluarán los tres modelos.
+* **Entorno de Prototipado:** Google Colab
+* **Acelerador de Hardware:** GPU NVIDIA Tesla T4 (VRAM: ~15 GB)
+* **Versión de Python:** 3.10+
+* **Ecosistema:** PyTorch, Hugging Face `transformers`, `datasets`, `evaluate`, `scikit-learn` y `pandas`.
 
 ---
 
-## 📁 Estructura del Proyecto
+## 🚀 Pasos de Ejecución
 
-```text
-.
-├── README.md                   # Documentación técnica general
-├── requirements.txt            # Dependencias del proyecto
-├── notebooks/                  # Cuaderno reproducible en Colab
-│   └── 01_huggingface_sentiment_benchmark.ipynb
-├── src/                        # Scripts de Python organizados
-│   ├── ingest_data.py
-│   └── evaluate_models.py
-├── data/                       # Muestras exportadas
-│   ├── eval_dataset_sample.csv
-│   └── eval_dataset_sample.jsonl
-└── results/                    # Resultados tabulares exportados
-    └── model_comparison_results.csv
+1. Haz clic en el botón superior **Open in Colab** o abre el archivo [`Evaluación_de_Modelos_Preentrenados_de_Hugging_Face.ipynb`](./Evaluación_de_Modelos_Preentrenados_de_Hugging_Face.ipynb) en este repositorio.
+2. Dentro de Google Colab, activa la GPU en el menú: **Entorno de ejecución > Cambiar tipo de entorno de ejecución > GPU T4 > Guardar**.
+3. Selecciona **Entorno de ejecución > Ejecutar todas** (`Ctrl + F9`) para correr todo el análisis.
 
+---
 
-## Resultados Comparativos
+## 📊 Resultados Comparativos
 
+Resumen de métricas y latencia obtenidas sobre la muestra de evaluación en GPU Tesla T4:
 
+| Modelo | Hugging Face ID | Accuracy | Precision | Recall | F1-Score | Latencia Total (s) | Latencia/Muestra (ms) |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **DistilBERT (Ligero)** | `distilbert-base-uncased-finetuned-sst-2-english` | 0.8900 | 0.9099 | 0.8618 | 0.8852 | 8.22 | **16.44** |
+| **BERT Base (Estándar)** | `textattack/bert-base-uncased-SST-2` | 0.9000 | 0.8952 | 0.9024 | 0.8988 | 13.99 | 27.99 |
+| **RoBERTa Large (Alta Capacidad)** | `siebert/sentiment-roberta-large-english` | **0.9440** | **0.9431** | **0.9431** | **0.9431** | 42.32 | 84.63 |
 
 ---
 
 ## 💡 Conclusiones y Recomendaciones
 
-Modelo elegido: DistilBERT
-Elegí este modelo ya que a pesar de que RoBERTa Largen nos da los mejores valores cuantitativos, DistilBERT representa la opción arquitectónica óptima en un entorno productivo real de uso masivo, esto porque: 
-•	Eficiencia en el costo - beneficio: Ofrece una precisión diagnóstica bastante sólida procesando hasta 60 peticiones por segundo por GPU T4, 16.44 ms por muestra. 
-•	Escalabilidad: su baja capacidad computacional permite realizar múltiples réplicas en un mismo entorno GPU o incluso realizar un despliegue eficiente en CPUs mediante marcos de inferencia. Lo hace más escalable y a un costo más barato.
-•	Si el caso no fuera para un análisis en tiempo real donde la velocidad de respuesta no es una prioridad, me inclinaría más por RoBERTa.
-Umbrales:
-•	Umbral de confianza: se recomienda establecer un nivel de confianza mínimo de probabilidad de softmax de 0.75 = 75%. Las predicciones que oscilen entre un 50 y 74% deberían pasar a una revisión humana.
-•	Latencia: máximo 50 ms por petición.
-Riesgos:
-•	Sesgo de idioma: al estar los textos en ingles podría haber sesgos al pasarse a otro idioma o que estén sesgados por alguna región o modismos en específico. Su impacto puede ser alto.
-•	Límite en la longitud del contexto (tokens 512): Textos muy extensos que superen los 512 tokens que se delimitaron, por lo que se podría perder conclusiones importantes al final del texto en algunos casos. Se podría mitigar dividiendo el documento en párrafos. Eso tiene un impacto medio, ya que la gran parte de las reseñas se puede inferir su sentimiento en menos de esa cantidad de token. 
-•	Negaciones complejas o sarcasmo: dobles negativos o sarcasmos que no sean identificados, sin embargo, se pueden mitigar con un fine tuning etiquetando datos en específico. Su impacto se considera medio. 
-
-
+### Modelo Elegido: DistilBERT (`distilbert-base-uncased-finetuned-sst-2-english`)
+A pesar de que **RoBERTa Large** nos da los mejores valores cuantitativos (F1 = 0.9431), **DistilBERT** representa la opción arquitectónica óptima en un entorno productivo real de uso masivo debido a:
+* **Eficiencia en costo-beneficio:** Ofrece una precisión diagnóstica bastante sólida (89.0% Accuracy / 88.52% F1) procesando hasta **60 peticiones por segundo por GPU T4** (16.44 ms por muestra).
+* **Escalabilidad y Menor Costo:** Su baja exigencia computacional permite realizar múltiples réplicas en un mismo entorno GPU o incluso realizar un despliegue eficiente en CPUs mediante marcos de inferencia, haciéndolo más escalable y económico.
+* *Nota:* Si el caso de uso no fuera para análisis en tiempo real y la velocidad de respuesta no fuera una prioridad, la elección sería RoBERTa Large.
