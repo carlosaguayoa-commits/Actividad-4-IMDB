@@ -49,3 +49,25 @@ Para ejecutar y reproducir los resultados de este proyecto no necesitas instalar
 │   └── eval_dataset_sample.jsonl
 └── results/                    # Resultados tabulares exportados
     └── model_comparison_results.csv
+
+
+## Resultados Comparativos
+
+
+
+## 💡 Conclusiones y Recomendaciones
+
+Modelo elegido: DistilBERT
+Elegí este modelo ya que a pesar de que RoBERTa Largen nos da los mejores valores cuantitativos, DistilBERT representa la opción arquitectónica óptima en un entorno productivo real de uso masivo, esto porque: 
+•	Eficiencia en el costo - beneficio: Ofrece una precisión diagnóstica bastante sólida procesando hasta 60 peticiones por segundo por GPU T4, 16.44 ms por muestra. 
+•	Escalabilidad: su baja capacidad computacional permite realizar múltiples réplicas en un mismo entorno GPU o incluso realizar un despliegue eficiente en CPUs mediante marcos de inferencia. Lo hace más escalable y a un costo más barato.
+•	Si el caso no fuera para un análisis en tiempo real donde la velocidad de respuesta no es una prioridad, me inclinaría más por RoBERTa.
+Umbrales:
+•	Umbral de confianza: se recomienda establecer un nivel de confianza mínimo de probabilidad de softmax de 0.75 = 75%. Las predicciones que oscilen entre un 50 y 74% deberían pasar a una revisión humana.
+•	Latencia: máximo 50 ms por petición.
+Riesgos:
+•	Sesgo de idioma: al estar los textos en ingles podría haber sesgos al pasarse a otro idioma o que estén sesgados por alguna región o modismos en específico. Su impacto puede ser alto.
+•	Límite en la longitud del contexto (tokens 512): Textos muy extensos que superen los 512 tokens que se delimitaron, por lo que se podría perder conclusiones importantes al final del texto en algunos casos. Se podría mitigar dividiendo el documento en párrafos. Eso tiene un impacto medio, ya que la gran parte de las reseñas se puede inferir su sentimiento en menos de esa cantidad de token. 
+•	Negaciones complejas o sarcasmo: dobles negativos o sarcasmos que no sean identificados, sin embargo, se pueden mitigar con un fine tuning etiquetando datos en específico. Su impacto se considera medio. 
+
+
