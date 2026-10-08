@@ -22,16 +22,13 @@ Este repositorio contiene la implementación, evaluación y análisis comparativ
 Para ejecutar y reproducir los resultados de este proyecto no necesitas instalar nada localmente. Todo el proceso se realiza en la nube a través de Google Colab con aceleración GPU:
 
 1. **Abrir el Notebook:**
-   Haz clic en el archivo [`Evaluación_de_Modelos_Preentrenados_de_Hugging_Face.ipynb`](./Evaluación_de_Modelos_Preentrenados_de_Hugging_Face.ipynb) dentro de este repositorio.
+   Entre a: https://colab.research.google.com/drive/1aME9hAoU2fhHT3obQIpf0jYKwx_cWTob?authuser=1#scrollTo=DVWM_UJ2ympR
 
-2. **Cargar en Google Colab:**
-   En la parte superior de la vista del notebook en GitHub, haz clic en el botón **"Open in Colab"** (o descarga el archivo `.ipynb` y súbelo a [colab.research.google.com](https://colab.research.google.com/)).
-
-3. **Activar la GPU T4:**
+2. **Activar la GPU T4:**
    Dentro de Colab, ve al menú superior:
    > **Entorno de ejecución** > **Cambiar tipo de entorno de ejecución** > Selecciona **GPU T4** > Guardar.
 
-4. **Ejecutar el Cuaderno:**
+3. **Ejecutar el Cuaderno:**
    Ve a **Entorno de ejecución** > **Ejecutar todas** (o presiona `Ctrl + F9`). Las celdas instalarán automáticamente las dependencias, cargarán el dataset y evaluarán los tres modelos.
 
 ---
