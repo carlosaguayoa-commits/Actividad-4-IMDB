@@ -17,11 +17,22 @@ Este repositorio contiene la implementación, evaluación y análisis comparativ
 ---
 
 ## ⚙️ Entorno de Ejecución
+## 🚀 Pasos de Ejecución (Google Colab)
 
-* **Entorno de Prototipado:** Google Colab
-* **Acelerador de Hardware:** GPU NVIDIA Tesla T4 (VRAM: ~15 GB)
-* **Versión de Python:** 3.10+
-* **Ecosistema Principal:** PyTorch, Hugging Face `transformers`, `datasets`, `evaluate` y `scikit-learn`.
+Para ejecutar y reproducir los resultados de este proyecto no necesitas instalar nada localmente. Todo el proceso se realiza en la nube a través de Google Colab con aceleración GPU:
+
+1. **Abrir el Notebook:**
+   Haz clic en el archivo [`Evaluación_de_Modelos_Preentrenados_de_Hugging_Face.ipynb`](./Evaluación_de_Modelos_Preentrenados_de_Hugging_Face.ipynb) dentro de este repositorio.
+
+2. **Cargar en Google Colab:**
+   En la parte superior de la vista del notebook en GitHub, haz clic en el botón **"Open in Colab"** (o descarga el archivo `.ipynb` y súbelo a [colab.research.google.com](https://colab.research.google.com/)).
+
+3. **Activar la GPU T4:**
+   Dentro de Colab, ve al menú superior:
+   > **Entorno de ejecución** > **Cambiar tipo de entorno de ejecución** > Selecciona **GPU T4** > Guardar.
+
+4. **Ejecutar el Cuaderno:**
+   Ve a **Entorno de ejecución** > **Ejecutar todas** (o presiona `Ctrl + F9`). Las celdas instalarán automáticamente las dependencias, cargarán el dataset y evaluarán los tres modelos.
 
 ---
 
