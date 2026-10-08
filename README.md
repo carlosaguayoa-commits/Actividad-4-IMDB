@@ -1,7 +1,5 @@
 # Benchmark de Modelos Preentrenados de Hugging Face para Análisis de Sentimiento
 
-[![Open In Colab](https.colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/carlosaguayoa-commits/Actividad-4-IMDB/blob/main/Evaluaci%C3%B3n_de_Modelos_Preentrenados_de_Hugging_Face.ipynb)
-
 Este repositorio contiene la implementación, evaluación y análisis comparativo de tres modelos Transformer preentrenados de la plataforma **Hugging Face** para la clasificación binaria de sentimientos (Positivo / Negativo) en reseñas de cine utilizando el dataset `IMDb`.
 
 ---
@@ -25,7 +23,7 @@ Este repositorio contiene la implementación, evaluación y análisis comparativ
 
 ## 🚀 Pasos de Ejecución
 
-1. Haz clic en el botón superior **Open in Colab** o abre el archivo [`Evaluación_de_Modelos_Preentrenados_de_Hugging_Face.ipynb`](./Evaluación_de_Modelos_Preentrenados_de_Hugging_Face.ipynb) en este repositorio.
+1. Entra al Colab: https://colab.research.google.com/drive/1aME9hAoU2fhHT3obQIpf0jYKwx_cWTob?authuser=1#scrollTo=DVWM_UJ2ympR
 2. Dentro de Google Colab, activa la GPU en el menú: **Entorno de ejecución > Cambiar tipo de entorno de ejecución > GPU T4 > Guardar**.
 3. Selecciona **Entorno de ejecución > Ejecutar todas** (`Ctrl + F9`) para correr todo el análisis.
 
