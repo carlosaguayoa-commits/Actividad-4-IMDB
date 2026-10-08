@@ -5,8 +5,6 @@ Tarea Actividad 4
 
 Este repositorio contiene la implementación, evaluación y análisis comparativo de modelos Transformer preentrenados de la plataforma **Hugging Face** para la tarea de clasificación binaria de sentimientos (Positivo / Negativo) en reseñas de cine utilizando el dataset de benchmark `IMDb`.
 
-El proyecto evalúa la precisión diagnóstica frente a la latencia de inferencia en hardware GPU (NVIDIA Tesla T4) dentro de Google Colab.
-
 ---
 
 ## 📋 Tabla de Contenidos
